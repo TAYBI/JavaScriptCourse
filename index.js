@@ -1,9 +1,16 @@
-let todo1 = 'make one thing above'
-let todo2 = 'yake a walk'
-let todo3 = 'make fire'
-let todo4 = 'smoke shit'
-
-let element = document.createElement('div')
-console.log(element);
-element.innerText = todo1
-document.body.appendChild(element)
+// Ex 5 /////////////////////
+//1-
+// document.getElementById('btn').addEventListener("click", function () {
+//     document.title = 'New Title'
+// }, false)
+//
+// todos = document.getElementsByTagName('p')
+// todosText = []
+// for (let i = 0; i < todos.length; i++) {
+//     const element = todos[i].innerHTML;
+//     todosText.push(element)
+// }
+//2-
+// for (let i = 0; i < todos.length; i++) {
+//     todos[i].innerHTML = todosText[todos.length - i - 1];
+// }
