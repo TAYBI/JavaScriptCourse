@@ -33,3 +33,23 @@
 // }
 // arrayDouble(words)
 // console.log(words);
+
+todos = ['todo1', 'todo2', 'todo3']
+
+function printTodos(array) {
+    array.forEach((element) => {
+        let child = document.createElement('p');
+        child.innerHTML = element;
+        document.body.appendChild(child);
+    });
+
+}
+
+printTodos(todos)
+
+function addTodo() {
+    let title = document.getElementById('todoTitle');
+    todos.push(title.value);
+    printTodos(todos);
+    title.value = '';
+}
