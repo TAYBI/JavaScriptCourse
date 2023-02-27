@@ -42,7 +42,13 @@
 // }, false)
 // document.body.appendChild(button)
 
-const todos = ['todo1', 'todo2', 'todo3']
+const todos = [{
+    title: 'todo title1',
+    dueDate: '2023-04-14'
+}, {
+    title: 'todo title2',
+    dueDate: '2023-02-31'
+}]
 
 function render() {
     // getting the to dos container
@@ -51,17 +57,20 @@ function render() {
     // adding todos to their container
     todos.forEach((element) => {
         const child = document.createElement('p');
-        child.innerHTML = element;
+        child.innerHTML = element.title + " " + element.dueDate;
         todosContainer.appendChild(child);
     });
-
 }
 
 render()
 
 function addTodo() {
-    const title = document.getElementById('todoTitle');
-    todos.push(title.value);
+    const title = document.getElementById('todoTitle').value;
+    const dueDate = document.getElementById('date').value;
+    todo = {
+        title: title,
+        dueDate: dueDate
+    }
+    todos.push(todo);
     render();
-    title.value = '';
 }
