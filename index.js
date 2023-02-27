@@ -33,23 +33,35 @@
 // }
 // arrayDouble(words)
 // console.log(words);
+//--------------------------------------------------------
+// EX8 ////////////////////////
+// button = document.createElement('button')
+// button.innerHTML = "click"
+// button.addEventListener("click", function () {
+//     button.innerText = 'done'
+// }, false)
+// document.body.appendChild(button)
 
 todos = ['todo1', 'todo2', 'todo3']
 
-function printTodos(array) {
-    array.forEach((element) => {
+function render() {
+    // getting the to dos container
+    let todosContainer = document.getElementById('todo-list')
+    todosContainer.innerHTML = ''
+    // adding todos to their container
+    todos.forEach((element) => {
         let child = document.createElement('p');
         child.innerHTML = element;
-        document.body.appendChild(child);
+        todosContainer.appendChild(child);
     });
 
 }
 
-printTodos(todos)
+render()
 
 function addTodo() {
     let title = document.getElementById('todoTitle');
     todos.push(title.value);
-    printTodos(todos);
+    render();
     title.value = '';
 }
