@@ -42,15 +42,15 @@
 // }, false)
 // document.body.appendChild(button)
 
-todos = ['todo1', 'todo2', 'todo3']
+const todos = ['todo1', 'todo2', 'todo3']
 
 function render() {
     // getting the to dos container
-    let todosContainer = document.getElementById('todo-list')
+    const todosContainer = document.getElementById('todo-list')
     todosContainer.innerHTML = ''
     // adding todos to their container
     todos.forEach((element) => {
-        let child = document.createElement('p');
+        const child = document.createElement('p');
         child.innerHTML = element;
         todosContainer.appendChild(child);
     });
@@ -60,7 +60,7 @@ function render() {
 render()
 
 function addTodo() {
-    let title = document.getElementById('todoTitle');
+    const title = document.getElementById('todoTitle');
     todos.push(title.value);
     render();
     title.value = '';
