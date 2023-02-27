@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>Exercises 9</h1>
+    <h1>• Exercises 9</h1>
     <h2>-| 1 shopping cart |-</h2>
     <div id="cart"></div>
     <br>
@@ -19,7 +19,7 @@
     <button id="clear" onclick="clearCart()">clear</button>
 
     <hr>
-    <!-- //////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+    <!-- //////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
     <h2>-| 2 cm-in converter |-</h2>
     <input type="number" id="input">
     <button id="toinch" onclick="toInch()">Convert to inche</button>
@@ -27,9 +27,20 @@
     <div id="result"></div>
 
     <hr>
-    <!-- //////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+    <!-- //////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+    <h1>• Exercises 10</h1>
+    <div id="receipt"></div>
+
 
     <script>
+        // EX 9
+        function addToCart(btn) {
+            document.getElementById('cart').innerHTML += ' - ' + btn.innerText
+        }
+        function clearCart() {
+            document.getElementById('cart').innerHTML = ''
+        }
+        // --------------
         function toInch() {
             inputValue = document.getElementById('input').value
             document.getElementById('result').innerHTML = (parseInt(inputValue) * 0.393701) + ' inche(s)'
@@ -38,12 +49,35 @@
             inputValue = document.getElementById('input').value
             document.getElementById('result').innerHTML = (parseInt(inputValue) / 0.393701) + ' cm(s)'
         }
-        function addToCart(btn) {
-            document.getElementById('cart').innerHTML += ' - ' + btn.innerText
+        ////////////////////////////////////////////////////////////////////////////////////
+        // EX 10
+        receipt = document.getElementById('receipt');
+        receipt.innerHTML = '';
+
+        carts = [{
+            name: 'Apple',
+            price: 4,
+            quantity: 2
+        }, {
+            name: 'Orange',
+            price: 3,
+            quantity: 3
+        }]
+
+        function cartTotal() {
+            total = 0
+            carts.forEach(item => {
+                div = document.createElement('div')
+                div.innerHTML += item.name + ' $' + item.price + '*' + item.quantity + ' = $' + (item.price * item.quantity)
+                receipt.appendChild(div)
+
+                total += item.price * item.quantity
+            });
+            div = document.createElement('div')
+            div.innerHTML = 'Cart total = $' + total
+            receipt.appendChild(div)
         }
-        function clearCart() {
-            document.getElementById('cart').innerHTML = ''
-        }
+        cartTotal(carts)
     </script>
 </body>
 
