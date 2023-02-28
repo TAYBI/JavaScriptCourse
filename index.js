@@ -42,7 +42,7 @@
 // }, false)
 // document.body.appendChild(button)
 
-const todos = [{
+let todos = [{
     title: 'todo title1',
     dueDate: '2023-04-14',
     id: 'id45678'
@@ -74,18 +74,31 @@ function render() {
 render()
 
 function addTodo() {
-    const title = document.getElementById('todoTitle').value;
-    const dueDate = document.getElementById('date').value;
+    const title = document.getElementById('todoTitle');
+    const dueDate = document.getElementById('date');
     todo = {
-        title: title,
-        dueDate: dueDate,
-        id: new Date().getTime()
+        title: title.value,
+        dueDate: dueDate.value,
+        id: '' + new Date().getTime()
     }
     todos.push(todo);
     render();
+    title.value = ''
+    dueDate.value = ''
 }
 
 function deleteTodo(e) {
+    const idToDelete = e.target.id;
+
+    todos = todos.filter(function (todo) {
+        if (todo.id === idToDelete) {
+            return false;
+        } else {
+            return true;
+        }
+    })
+
     console.log(e.target.id);
-    console.log('delete');
+    console.log(todos);
+    render()
 }
