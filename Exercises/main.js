@@ -16,10 +16,10 @@ function toCm() {
 }
 ////////////////////////////////////////////////////////////////////////////////////
 // EX 10
-receipt = document.getElementById('receipt');
+const receipt = document.getElementById('receipt');
 receipt.innerHTML = '';
 
-carts = [{
+const carts = [{
     name: 'Apple',
     price: 4,
     quantity: 2
@@ -46,4 +46,22 @@ cartTotal(carts)
 
 
 ////////////////////////////////////////////////////////////////////////////////////
-// EX 11
+// EX 12
+
+function toUpper(value) {
+    console.log(value.toUpperCase());
+    return value.toUpperCase();
+}
+let temps = [-10, 7, 12, 18, -5, 19, 6, 1, -2, 19, 13, 7, 18, 11, -8, 4, 19, 17, -3, 6, 16, 18, 4, 10, 19, 14, 3, -7, 8, 18, 18, 0, 0, -6, 4, 8, 1, 11, 7, 9, -5, 17, -7, -6, 19, -2, 16, -5, 12, -9]
+
+function aboveFreezing(array) {
+    aboveFreezingTemps = []
+    array.forEach(temp => {
+        if (temp > 0) {
+            aboveFreezingTemps.push(temp)
+        }
+    });
+    return aboveFreezingTemps;
+}
+
+console.log(aboveFreezing(temps));
