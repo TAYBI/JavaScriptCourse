@@ -1,15 +1,22 @@
 ////////////// Model
-let todos = [{
-    title: 'todo title1',
-    dueDate: '2023-04-14',
-    id: 'id45678',
-    isDone: false
-}, {
-    title: 'todo title2',
-    dueDate: '2023-02-31',
-    id: 'id456788',
-    isDone: true
-}]
+// check if there is any data saved to local Storage
+let todos;
+const savedTodos = JSON.parse(localStorage.getItem('todos'))[0];
+if (Array.isArray(savedTodos)) {
+    todos = savedTodos
+} else {
+    todos = [{
+        title: 'todo title1',
+        dueDate: '2023-04-14',
+        id: 'id45678',
+        isDone: false
+    }, {
+        title: 'todo title2',
+        dueDate: '2023-02-31',
+        id: 'id456788',
+        isDone: true
+    }]
+}
 // creates todo
 function createTodo(title, dueDate) {
     todo = {
@@ -19,6 +26,7 @@ function createTodo(title, dueDate) {
         isDone: false
     }
     todos.push(todo);
+    saveTodo();
 }
 
 // deletes totdo
@@ -30,15 +38,23 @@ function removeTodo(idToDelete) {
             return true;
         }
     })
+    saveTodo();
 }
 // marke Todo as done
 function markeTodoAsDone(checked, id) {
     todos.forEach(todo => {
         if (checked && todo.id === id) {
-            todo.isDone = checked
+            todo.isDone = checked;
         }
     });
+    saveTodo();
 }
+// save todo to local Storage
+function saveTodo() {
+    localStorage.setItem('todos', JSON.stringify([todos]));
+    console.log('saved');
+}
+
 ////////////////// View
 function render() {
     // getting the to dos container
@@ -89,6 +105,5 @@ function deleteTodo(e) {
 
 function todoDone(e) {
     const checkbox = e.target
-    markeTodoAsDone(checked, id)
-    console.log(checkbox.checked, checkbox.id);
+    markeTodoAsDone(checkbox.checked, checkbox.id)
 }
