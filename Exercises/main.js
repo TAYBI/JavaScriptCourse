@@ -48,20 +48,56 @@ cartTotal(carts)
 ////////////////////////////////////////////////////////////////////////////////////
 // EX 12
 
-function toUpper(value) {
-    console.log(value.toUpperCase());
-    return value.toUpperCase();
-}
-let temps = [-10, 7, 12, 18, -5, 19, 6, 1, -2, 19, 13, 7, 18, 11, -8, 4, 19, 17, -3, 6, 16, 18, 4, 10, 19, 14, 3, -7, 8, 18, 18, 0, 0, -6, 4, 8, 1, 11, 7, 9, -5, 17, -7, -6, 19, -2, 16, -5, 12, -9]
+// function toUpper(value) {
+//     console.log(value.toUpperCase());
+//     return value.toUpperCase();
+// }
+// let temps = [-10, 7, 12, 18, -5, 19, 6, 1, -2, 19, 13, 7, 18, 11, -8, 4, 19, 17, -3, 6, 16, 18, 4, 10, 19, 14, 3, -7, 8, 18, 18, 0, 0, -6, 4, 8, 1, 11, 7, 9, -5, 17, -7, -6, 19, -2, 16, -5, 12, -9]
 
-function aboveFreezing(array) {
-    aboveFreezingTemps = []
-    array.forEach(temp => {
-        if (temp > 0) {
-            aboveFreezingTemps.push(temp)
+// function aboveFreezing(array) {
+//     aboveFreezingTemps = []
+//     array.forEach(temp => {
+//         if (temp > 0) {
+//             aboveFreezingTemps.push(temp)
+//         }
+//     });
+//     return aboveFreezingTemps;
+// }
+
+// console.log(aboveFreezing(temps));
+
+////////////////////////////////////////////////////////////////////////////////////
+// EX 12
+// 1
+
+function max(array) {
+    let max = array[0]
+    array.forEach(element => {
+        if (element > max) {
+            max = element
         }
     });
-    return aboveFreezingTemps;
+    return max
 }
+console.log(max([1, 5, -2, 4, 3, 5, 0]));
 
-console.log(aboveFreezing(temps));
+// 2
+function pickApples(fruits) {
+    let count = 0;
+    let position = 0
+    fruits.forEach(fruit => {
+        if (fruit === 'apple') {
+            count++;
+            if (count == 1) {
+                position = fruits.indexOf(fruit);
+            }
+            const index = fruits.indexOf(fruit);
+            fruits.splice(index, 1);
+        }
+    });
+    fruits.splice(position, 0, 'apple');
+    console.log(fruits);
+    // return newfruits;
+}
+const fruits = ['cherry', 'apple', 'orange', 'apple', 'banana', 'apple']
+console.log(pickApples(fruits));
