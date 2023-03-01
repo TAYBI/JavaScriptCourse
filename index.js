@@ -2,18 +2,21 @@
 let todos = [{
     title: 'todo title1',
     dueDate: '2023-04-14',
-    id: 'id45678'
+    id: 'id45678',
+    isDone: false
 }, {
     title: 'todo title2',
     dueDate: '2023-02-31',
-    id: 'id456788'
+    id: 'id456788',
+    isDone: true
 }]
 // creates todo
 function createTodo(title, dueDate) {
     todo = {
         title: title,
         dueDate: dueDate,
-        id: '' + new Date().getTime()
+        id: '' + new Date().getTime(),
+        isDone: false
     }
     todos.push(todo);
 }
@@ -28,6 +31,14 @@ function removeTodo(idToDelete) {
         }
     })
 }
+// marke Todo as done
+function markeTodoAsDone(checked, id) {
+    todos.forEach(todo => {
+        if (checked && todo.id === id) {
+            todo.isDone = checked
+        }
+    });
+}
 ////////////////// View
 function render() {
     // getting the to dos container
@@ -35,15 +46,26 @@ function render() {
     todosContainer.innerHTML = '';
     // adding todos to their container
     todos.forEach((element) => {
-        deleteButton = document.createElement('button');
+        const deleteButton = document.createElement('button');
+        const checkbox = document.createElement('input')
+        const child = document.createElement('div');
+
         deleteButton.innerText = 'delete';
         deleteButton.id = element.id;
         deleteButton.style = "margin-left: 10px";
-        deleteButton.onclick = deleteTodo
+        deleteButton.onclick = deleteTodo;
 
-        const child = document.createElement('p');
+        checkbox.type = 'checkbox'
+        checkbox.style = "margin-right: 10px";
+        checkbox.onchange = todoDone;
+        checkbox.id = element.id;
+        checkbox.checked = element.isDone
+
         child.innerHTML = element.title + " " + element.dueDate;
+        child.id = element.id;
         child.appendChild(deleteButton)
+        child.prepend(checkbox)
+
         todosContainer.appendChild(child);
     });
 }
@@ -63,4 +85,10 @@ function deleteTodo(e) {
     const idToDelete = e.target.id;
     removeTodo(idToDelete)
     render()
+}
+
+function todoDone(e) {
+    const checkbox = e.target
+    markeTodoAsDone(checked, id)
+    console.log(checkbox.checked, checkbox.id);
 }
